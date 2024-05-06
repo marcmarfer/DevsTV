@@ -1,1 +1,25 @@
-<p>admin works!</p>
+<form [formGroup]="videoForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="youtubeURL">YouTube URL:</label>
+        <input type="text" id="youtubeURL" formControlName="youtubeURL">
+    </div>
+    <div>
+        <label for="thumbnail">Thumbnail URL:</label>
+        <input type="text" id="thumbnail" formControlName="thumbnail">
+    </div>
+    <div>
+        <label for="duration">Duration (seconds):</label>
+        <input type="number" id="duration" formControlName="duration">
+    </div>
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" formControlName="title">
+    </div>
+    <div>
+        <label for="category">Category:</label>
+        <select id="category" formControlName="category">
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+    </div>
+    <button type="submit" [disabled]="videoForm.invalid">Submit</button>
+</form>

@@ -1,11 +1,12 @@
 import { Injectable, signal } from '@angular/core';
+import { Video } from '../interfaces/Video';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class VideoService {
-  // sharedData = signal<videos[]>([]);
+  videosSignal = signal<Video[]>([]);
 
   constructor() { }
 }

@@ -1,1 +1,15 @@
-<p>videos works!</p>
+<div class="general-videos-container">
+@if (videos.length > 0) {
+@for (video of videos; track $index) {
+    <article>
+        <h3>{{ video.title }}</h3>
+        <a href="{{ video.youtubeURL }}" target="_blank"><img src="{{ video.thumbnail }}" alt="imágen del video"></a>
+        <p>Duration: {{ video.duration }}</p>
+        <p>Category: {{ video.category }}</p>
+    </article>
+}
+}
+@else {
+    <p>No videos available</p>
+}
+</div>
