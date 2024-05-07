@@ -13,41 +13,47 @@ export class VideosComponent {
   videos: Video[] = [];
 
   constructor(private addVideoService: VideoService) { };
-  ngOnInit(): void {
-    this.videos = this.addVideoService.videosSignal();
-    
-    //testing videos
-    this.videos.push({
+
+  testVideos: Video[] = [
+    {
       youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
       thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
       duration: 60,
       title: 'titulo 1',
       category: DevelopmentCategory.GameDevelopment
-    });
-
-    this.videos.push({
+    },
+    {
       youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
       thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
       duration: 60,
       title: 'titulo 2',
       category: DevelopmentCategory.GameDevelopment
-    });
-
-    this.videos.push({
+    },
+    {
       youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
       thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
       duration: 60,
       title: 'titulo 3',
       category: DevelopmentCategory.GameDevelopment
-    });
-
-    this.videos.push({
+    },
+    {
       youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
       thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
       duration: 60,
       title: 'titulo 4',
       category: DevelopmentCategory.GameDevelopment
+    }
+
+  ];
+
+  ngOnInit(): void {
+    this.videos = this.addVideoService.videosSignal();
+
+    // Add test videos if its title is different (should change it so it's being done by video id / reference)
+    this.testVideos.forEach(testVideo => {
+      if (!this.videos.find(video => video.title === testVideo.title)) {
+        this.videos.push(testVideo);
+      }
     });
   }
-
 }
