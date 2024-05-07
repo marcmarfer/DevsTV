@@ -1,0 +1,47 @@
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    gap: 20px;
+    padding: 40px;
+}
+
+label {
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #B1FFC7;
+    border-radius: 10px;
+    background-color: #1d3532;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #57cc99;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #00CE6B;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #01a556;
+}

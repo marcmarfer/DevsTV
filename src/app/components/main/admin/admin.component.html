@@ -18,7 +18,9 @@
     <div>
         <label for="category">Category:</label>
         <select id="category" formControlName="category">
-            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            @for (category of categories; track $index) {
+                <option [value]="category">{{ category }}</option>
+            }
         </select>
     </div>
     <button type="submit" [disabled]="videoForm.invalid">Submit</button>
