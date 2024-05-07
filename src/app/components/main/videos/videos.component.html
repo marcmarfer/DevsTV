@@ -3,7 +3,17 @@
 @for (video of videos; track $index) {
     <article>
         <h3>{{ video.title }}</h3>
-        <a href="{{ video.youtubeURL }}" target="_blank"><img src="{{ video.thumbnail }}" alt="imágen del video"></a>
+        <div class="video-container">
+            <a href="{{ video.youtubeURL }}" target="_blank">
+                <img src="{{ video.thumbnail }}" alt="imágen del video">
+                <div class="play-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="72px" height="72px">
+                        <path d="M8 5v14l11-7z" />
+                        <path d="M0 0h24v24H0z" fill="none" />
+                    </svg>
+                </div>
+            </a>
+        </div>
         <p>Duration: {{ video.duration }}</p>
         <p>Category: {{ video.category }}</p>
     </article>
