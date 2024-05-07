@@ -1,7 +1,14 @@
-<nav>
-    <ul>
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/videos">Videos</a></li>
-      <li><a routerLink="/admin">Admin</a></li>
-    </ul>
-</nav>
+<div class="header">
+  <div class="logo" routerLink="/home">Devs<span class="tv">TV</span></div>
+  <div class="search-container">
+    <div class="search-component">
+      <span class="search-icon"></span>
+      <input type="text" placeholder="Escribe aquí para buscar" class="search">
+    </div>
+  </div>
+  <nav>
+    <a routerLink="/home">Home</a>
+    <a routerLink="/videos">Videos</a>
+    <a routerLink="/admin">Admin</a>
+  </nav>
+</div>
