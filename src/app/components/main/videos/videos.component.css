@@ -6,12 +6,17 @@
   gap: 50px;
 }
 
+p, h3 {
+  margin: 0;
+}
+
 article {
   width: 35rem;
   height: auto;
   display: flex;
   flex-direction: column;
   color: white;
+  gap: 15px;
 }
 
 article img {
