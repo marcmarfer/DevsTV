@@ -1,7 +1,7 @@
 export interface Video {
     youtubeURL: string;
     thumbnail: string;
-    duration: number;
+    reference: string;
     title: string;
     category: DevelopmentCategory;
 }

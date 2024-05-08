@@ -4,3 +4,9 @@ body {
     background-image: url('/assets/background.jpg');
     background-size: cover;
 }
+
+app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

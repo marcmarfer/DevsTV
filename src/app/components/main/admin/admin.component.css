@@ -14,7 +14,6 @@ label {
 }
 
 input {
-    width: 100%;
     padding: 10px;
     border: 2px solid #B1FFC7;
     border-radius: 10px;
@@ -30,18 +29,37 @@ input:focus {
 }
 
 button[type="submit"] {
-    width: 100%;
     padding: 10px;
     border: none;
     border-radius: 10px;
-    background-color: #00CE6B;
+    background-color: #00b15b;
     color: white;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 9rem;
+    margin: auto;
 }
 
 button[type="submit"]:hover {
-    background-color: #01a556;
+    background-color: #01914b;
+}
+
+.categories-select {
+    padding: 5px 10px;
+    border: 2px solid #B1FFC7;
+    border-radius: 10px;
+    background-color: #1d3532;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.categories-select option {
+    background-color: #1d3532;
+    color: white;
 }

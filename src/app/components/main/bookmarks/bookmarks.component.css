@@ -1,0 +1,14 @@
+.general-bookmarks-container {
+    font-family: "Poppins", sans-serif;
+    padding: 40px;
+    gap: 50px;
+}
+
+h1 {
+    color: #FFFFFC;
+    margin: 0;
+}
+
+p {
+    color: #FFFFFC;
+}

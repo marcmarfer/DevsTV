@@ -18,28 +18,28 @@ export class VideosComponent {
     {
       youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
       thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
-      duration: 60,
+      reference: "REF01",
       title: 'titulo 1',
       category: DevelopmentCategory.GameDevelopment
     },
     {
       youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
       thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
-      duration: 60,
+      reference: "REF02",
       title: 'titulo 2',
       category: DevelopmentCategory.GameDevelopment
     },
     {
       youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
       thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
-      duration: 60,
+      reference: "REF03",
       title: 'titulo 3',
       category: DevelopmentCategory.GameDevelopment
     },
     {
       youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
       thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
-      duration: 60,
+      reference: "REF04",
       title: 'titulo 4',
       category: DevelopmentCategory.GameDevelopment
     }

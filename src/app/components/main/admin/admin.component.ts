@@ -21,9 +21,9 @@ export class AdminComponent {
     this.videoForm = new FormGroup({
       youtubeURL: new FormControl('', [Validators.required, this.youtubeUrlValidator]),
       thumbnail: new FormControl('', Validators.required),
-      duration: new FormControl('', [Validators.required, Validators.min(0)]),
+      reference: new FormControl('', Validators.required),
       title: new FormControl('', Validators.required),
-      category: new FormControl('', Validators.required)
+      category: new FormControl(this.categories[0], Validators.required)
     });
 
     this.videos = this.addVideoService.videosSignal();
