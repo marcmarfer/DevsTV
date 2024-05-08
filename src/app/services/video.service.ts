@@ -7,6 +7,7 @@ import { Video } from '../interfaces/Video';
 
 export class VideoService {
   videosSignal = signal<Video[]>([]);
+  filteredVideosSignal = signal<Video[]>([]);
 
   constructor() { }
 }

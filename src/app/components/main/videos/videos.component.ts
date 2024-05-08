@@ -11,8 +11,9 @@ import { DevelopmentCategory, Video } from '../../../interfaces/Video';
 })
 export class VideosComponent {
   videos: Video[] = [];
+  filteredVideos: Video[] = [];
 
-  constructor(private addVideoService: VideoService) { };
+  constructor(private addVideoService: VideoService, private filterVideoService: VideoService) { };
 
   testVideos: Video[] = [
     {
@@ -43,11 +44,11 @@ export class VideosComponent {
       title: 'titulo 4',
       category: DevelopmentCategory.GameDevelopment
     }
-
   ];
 
   ngOnInit(): void {
     this.videos = this.addVideoService.videosSignal();
+    this.filteredVideos = this.filterVideoService.filteredVideosSignal();
 
     // Add test videos if its title is different (should change it so it's being done by video id / reference)
     this.testVideos.forEach(testVideo => {

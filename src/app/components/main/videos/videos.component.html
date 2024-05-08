@@ -2,7 +2,7 @@
 @if (videos.length > 0) {
 @for (video of videos; track $index) {
     <article>
-        <h3>{{ video.title }}</h3>
+        <h3>{{ video.title }}</h3> 
         <div class="video-container">
             <a href="{{ video.youtubeURL }}" target="_blank">
                 <img src="{{ video.thumbnail }}" alt="imágen del video">
