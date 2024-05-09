@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# API specific files to ignore
+/api/node_modules
+/api/npm-debug.log
+/api/yarn-error.log
