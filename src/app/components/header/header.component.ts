@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { VideoService } from '../../services/video.service';
 import { Video } from '../../interfaces/Video';
@@ -11,14 +11,19 @@ import { Video } from '../../interfaces/Video';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  videos: Video[] = [];
   filteredVideos: Video[] = [];
+  filteredVideosByCategory: Video[] = [];
 
-  constructor(private videoService: VideoService) { }
+  constructor(private videoService: VideoService) {
+    effect(() => {
+      this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
+      console.log(this.filteredVideosByCategory)
+    });
+   }
 
   searchVideos(event: Event): void {
     const searchTerm = (event.target as HTMLInputElement).value;
-    this.filteredVideos = this.videos.filter(video =>
+    this.filteredVideos = this.filteredVideosByCategory.filter(video =>
       video.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -26,7 +31,7 @@ export class HeaderComponent {
   }
 
   ngOnInit(): void {
-    this.videos = this.videoService.videosSignal();
     this.filteredVideos = this.videoService.filteredVideosSignal();
+    this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
   }
 }

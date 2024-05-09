@@ -16,6 +16,5 @@ export enum DevelopmentCategory {
     Cybersecurity = "Cybersecurity",
     DevOps = "DevOps",
     Blockchain = "Blockchain",
-    CloudComputing = "Cloud Computing",
-    Other = "Other"
+    CloudComputing = "Cloud Computing"
 }

@@ -1,3 +1,17 @@
+.categories-select-container {
+  padding: 0px 40px;
+}
+
+.categories-select {
+  font-family: 'Poppins', sans-serif;
+  background-color: #002922;
+  border: 2px solid #B1FFC7;
+  width: 20rem;
+  color: white;
+  font-size: 1rem;
+  padding: 3px 6px;
+}
+
 .general-videos-container {
   font-family: 'Poppins', sans-serif;
   display: flex;
@@ -6,7 +20,14 @@
   gap: 50px;
 }
 
-p, h3 {
+h3 {
+  font-family: "Poppins", sans-serif;
+  color: #FFFFFC;
+  font-size: 1.5rem;
+  margin: 15px 0px;
+}
+
+p, .video-titles {
   margin: 0;
 }
 

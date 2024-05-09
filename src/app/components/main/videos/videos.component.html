@@ -1,8 +1,15 @@
+<div class="categories-select-container">
+    <h3>Select category</h3>
+    <select class="categories-select" [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange()">
+        <option value="all">All</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>    
+</div>
 <div class="general-videos-container">
-@if (filteredVideos.length > 0) {
-@for (video of filteredVideos; track $index) {
+    @if (filteredVideos.length > 0) {
+    @for (video of filteredVideos; track $index) {
     <article>
-        <h3>{{ video.title }}</h3> 
+        <h3 class="video-titles">{{ video.title }}</h3>
         <div class="video-container">
             <a href="{{ video.youtubeURL }}" target="_blank">
                 <img src="{{ video.thumbnail }}" alt="Imágen del video">
@@ -17,9 +24,9 @@
         <p>Reference: {{ video.reference }}</p>
         <p>Category: {{ video.category }}</p>
     </article>
-}
-}
-@else {
+    }
+    }
+    @else {
     <p class="no-videos-text">No videos available</p>
-}
+    }
 </div>
