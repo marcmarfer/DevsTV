@@ -1,11 +1,11 @@
 <div class="general-videos-container">
-@if (videos.length > 0) {
-@for (video of videos; track $index) {
+@if (filteredVideos.length > 0) {
+@for (video of filteredVideos; track $index) {
     <article>
         <h3>{{ video.title }}</h3> 
         <div class="video-container">
             <a href="{{ video.youtubeURL }}" target="_blank">
-                <img src="{{ video.thumbnail }}" alt="imágen del video">
+                <img src="{{ video.thumbnail }}" alt="Imágen del video">
                 <div class="play-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="72px" height="72px">
                         <path d="M8 5v14l11-7z" />
@@ -20,6 +20,6 @@
 }
 }
 @else {
-    <p>No videos available</p>
+    <p class="no-videos-text">No videos available</p>
 }
 </div>

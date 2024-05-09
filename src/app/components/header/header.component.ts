@@ -14,19 +14,19 @@ export class HeaderComponent {
   videos: Video[] = [];
   filteredVideos: Video[] = [];
 
-  constructor(private searchVideoService: VideoService) { }
+  constructor(private videoService: VideoService) { }
 
   searchVideos(event: Event): void {
     const searchTerm = (event.target as HTMLInputElement).value;
     this.filteredVideos = this.videos.filter(video =>
       video.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    this.searchVideoService.filteredVideosSignal.set(this.filteredVideos);
-    console.log(this.filteredVideos);
+
+    this.videoService.filteredVideosSignal.update(() => this.filteredVideos);
   }
 
   ngOnInit(): void {
-    this.videos = this.searchVideoService.videosSignal();
-    this.filteredVideos = this.videos;
+    this.videos = this.videoService.videosSignal();
+    this.filteredVideos = this.videoService.filteredVideosSignal();
   }
 }

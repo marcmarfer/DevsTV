@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { VideoService } from '../../../services/video.service';
 import { DevelopmentCategory, Video } from '../../../interfaces/Video';
 
@@ -13,7 +13,11 @@ export class VideosComponent {
   videos: Video[] = [];
   filteredVideos: Video[] = [];
 
-  constructor(private addVideoService: VideoService, private filterVideoService: VideoService) { };
+  constructor(private videoService: VideoService) {
+    effect(() => {
+      this.filteredVideos = this.videoService.filteredVideosSignal();
+    });
+   };
 
   testVideos: Video[] = [
     {
@@ -47,14 +51,15 @@ export class VideosComponent {
   ];
 
   ngOnInit(): void {
-    this.videos = this.addVideoService.videosSignal();
-    this.filteredVideos = this.filterVideoService.filteredVideosSignal();
-
-    // Add test videos if its title is different (should change it so it's being done by video id / reference)
+    this.videos = this.videoService.videosSignal();
+    this.filteredVideos = this.videoService.filteredVideosSignal();
+    
     this.testVideos.forEach(testVideo => {
-      if (!this.videos.find(video => video.title === testVideo.title)) {
+      if (!this.videos.find(video => video.reference === testVideo.reference)) {
         this.videos.push(testVideo);
       }
     });
+    
+    this.videoService.filteredVideosSignal.set(this.videos);
   }
 }

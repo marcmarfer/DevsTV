@@ -48,3 +48,8 @@ article a:hover .play-icon {
 article a:hover img {
   filter: brightness(50%);
 }
+
+.no-videos-text {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
