@@ -3,7 +3,7 @@ const connection = require('../database');
 
 exports.saveVideo = (req, res) => {
   const { title, description, youtubeUrl, thumbnailUrl, category } = req.body;
-  const sql = 'INSERT INTO videos (title, description, youtube_url, thumbnail_url, category) VALUES (?, ?, ?, ?, ?)';
+  const sql = 'INSERT INTO videos (title, youtube_url, thumbnail_url, category) VALUES (?, ?, ?, ?, ?)';
   connection.query(sql, [title, description, youtubeUrl, thumbnailUrl, category], (err, result) => {
     if (err) {
       console.log(err);

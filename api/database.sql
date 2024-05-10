@@ -8,7 +8,6 @@ CREATE TABLE users (
 CREATE TABLE videos (
     id_video INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
-    description TEXT,
     youtube_url VARCHAR(255),
     thumbnail_url VARCHAR(255),
     category VARCHAR(100)
