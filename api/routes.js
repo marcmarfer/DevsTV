@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const saveVideoController = require('./controllers/saveVideoController');
-const saveBookmarkedVideoController = require('./controllers/saveBookmarkedVideoController');
+const videoController = require('./controllers/videoController');
+const bookmarkedController = require('./controllers/bookmarkedController');
 
-router.post('/save-video', saveVideoController.saveVideo);
+router.get('/videos', videoController.getVideos);
+router.get('/bookmarked-videos', bookmarkedController.getBookmarkedVideos);
 
-router.post('/save-bookmarked-video', saveBookmarkedVideoController.saveBookmarkedVideo);
+router.post('/save-video', videoController.saveVideo);
+router.post('/save-bookmarked-video', bookmarkedController.saveBookmarkedVideo);
 
 module.exports = router;

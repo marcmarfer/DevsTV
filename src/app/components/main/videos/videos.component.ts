@@ -54,7 +54,6 @@ export class VideosComponent {
       category: DevelopmentCategory.CloudComputing
     }
   ];
-
   
   get categories() {
     return Object.values(DevelopmentCategory);

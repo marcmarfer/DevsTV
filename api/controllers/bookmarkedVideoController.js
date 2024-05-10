@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const connection = require('../database');
+const connection = require('../server');
 
 exports.saveBookmarkedVideo = (req, res) => {
   const { userId, videoId, rating } = req.body;
@@ -12,3 +12,15 @@ exports.saveBookmarkedVideo = (req, res) => {
     res.json({ message: 'Video marcado como guardado exitosamente' });
   });
 };
+
+exports.getBookmarkedVideos = (req, res) => {
+  const sql = 'SELECT * FROM bookmarked_videos';
+  connection.query(sql, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: 'Hubo un error al obtener los videos guardados' });
+    }
+    res.json(result);
+  });
+}
+

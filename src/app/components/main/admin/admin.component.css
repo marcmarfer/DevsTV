@@ -57,6 +57,7 @@ button[type="submit"]:hover {
     cursor: pointer;
     transition: border-color 0.3s ease;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .categories-select option {
