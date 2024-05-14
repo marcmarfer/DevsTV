@@ -1,0 +1,32 @@
+###
+GET http://localhost:3000/users HTTP/1.1
+
+###
+GET http://localhost:3000/users/1 HTTP/1.1
+
+###
+GET http://localhost:3000/videos HTTP/1.1
+
+###
+GET http://localhost:3000/bookmarked-videos HTTP/1.1
+
+###
+POST http://localhost:3000/save-video HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "video de prueba 2",
+    "youtubeUrl": "https://www.youtube.com/watch?v=2u3_te2BRK8",
+    "thumbnailUrl": "https://www.up-spain.com/wp-content/uploads/2022/11/beneficios-patatas-1.jpg",
+    "category": "Web Development"
+}
+
+###
+POST http://localhost:3000/save-bookmarked-video HTTP/1.1
+Content-Type: application/json
+
+{
+    "userId": 2,
+    "videoId": 3,
+    "rating": 5
+}

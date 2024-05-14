@@ -1,26 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
 const cors = require('cors');
-app.use(cors());
-
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'devs_tv'
-});
-
-connection.connect((err) => {
-  if (err) throw err;
-  console.log('Connected to the MySQL database.');
-});
+const routes = require('./routes');
 
 const app = express();
 const PORT = 3000;
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use('/', routes);
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
 app.listen(PORT, () => {
   console.log(`Servidor en ejecución en el puerto ${PORT}`);

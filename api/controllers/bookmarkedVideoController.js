@@ -1,26 +1,30 @@
-const mysql = require('mysql');
-const connection = require('../server');
+const connection = require('../db');
 
-exports.saveBookmarkedVideo = (req, res) => {
-  const { userId, videoId, rating } = req.body;
-  const sql = 'INSERT INTO bookmarked_videos (id_user, id_video, rating) VALUES (?, ?, ?)';
-  connection.query(sql, [userId, videoId, rating], (err, result) => {
-    if (err) {
-      console.log(err);
-      return res.status(500).json({ message: 'Hubo un error al marcar el video como guardado' });
-    }
-    res.json({ message: 'Video marcado como guardado exitosamente' });
-  });
+const saveBookmarkedVideo = (req, res) => {
+    const { userId, videoId, rating } = req.body;
+    const sql = 'INSERT INTO bookmarked_videos (id_user, id_video, rating) VALUES (?, ?, ?)';
+    connection.query(sql, [userId, videoId, rating], (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ message: 'Hubo un error al marcar el video como guardado' });
+        }
+        res.json({ message: 'Video marcado como guardado exitosamente' });
+    });
 };
 
-exports.getBookmarkedVideos = (req, res) => {
-  const sql = 'SELECT * FROM bookmarked_videos';
-  connection.query(sql, (err, result) => {
-    if (err) {
-      console.log(err);
-      return res.status(500).json({ message: 'Hubo un error al obtener los videos guardados' });
-    }
-    res.json(result);
-  });
+const getBookmarkedVideos = (req, res) => {
+    const sql = 'SELECT * FROM bookmarked_videos';
+    connection.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ message: 'Hubo un error al obtener los videos guardados' });
+        }
+        res.json(result);
+    });
 }
+
+module.exports = {
+    saveBookmarkedVideo,
+    getBookmarkedVideos
+};
 
