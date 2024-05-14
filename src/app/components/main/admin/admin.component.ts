@@ -32,8 +32,7 @@ export class AdminComponent {
   onSubmit() {
     if (this.videoForm.valid) {
       const newVideo: Video = this.videoForm.value;
-      this.videos.push(newVideo);
-      this.addVideoService.videosSignal.set(this.videos);
+      this.addVideoService.postVideo(newVideo);
       this.videoForm.reset();
     }
   }

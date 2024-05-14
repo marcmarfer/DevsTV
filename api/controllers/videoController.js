@@ -1,9 +1,9 @@
 const connection = require('../db');
 
 const saveVideo = (req, res) => {
-    const { title, youtubeUrl, thumbnailUrl, category } = req.body;
-    const sql = 'INSERT INTO videos (title, youtube_url, thumbnail_url, category) VALUES (?, ?, ?, ?)';
-    connection.query(sql, [title, youtubeUrl, thumbnailUrl, category], (err, result) => {
+    const { title, reference, youtube_url, thumbnail_url, category } = req.body;
+    const sql = 'INSERT INTO videos (title, reference, youtube_url, thumbnail_url, category) VALUES (?, ?, ?, ?, ?)';
+    connection.query(sql, [title, reference, youtube_url, thumbnail_url, category], (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ message: 'Hubo un error al guardar el video' });

@@ -19,4 +19,10 @@ export class VideoService {
     })
   }
 
+  postVideo(video: Video) {
+    this.http.post('http://localhost:3000/save-video', video).subscribe(() => {
+      this.getVideos();
+    });
+  }
+
 }
