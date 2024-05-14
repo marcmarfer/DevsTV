@@ -48,9 +48,8 @@ export class VideosComponent {
     this.videos = this.videoService.videosSignal();
     this.filteredVideos = this.videoService.filteredVideosSignal();
     this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
-    
-    console.log(this.videos);
 
     this.videoService.filteredVideosSignal.set(this.videos);
+    this.videoService.filteredVideosByCategorySignal.set(this.videos);
   }
 }
