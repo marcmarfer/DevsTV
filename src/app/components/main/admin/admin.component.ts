@@ -19,8 +19,8 @@ export class AdminComponent {
 
   ngOnInit(): void {
     this.videoForm = new FormGroup({
-      youtubeURL: new FormControl('', [Validators.required, this.youtubeUrlValidator]),
-      thumbnail: new FormControl('', Validators.required),
+      youtube_url: new FormControl('', [Validators.required, this.youtubeUrlValidator]),
+      thumbnail_url: new FormControl('', Validators.required),
       reference: new FormControl('', Validators.required),
       title: new FormControl('', Validators.required),
       category: new FormControl(this.categories[0], Validators.required)

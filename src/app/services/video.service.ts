@@ -13,9 +13,10 @@ export class VideoService {
 
   constructor(private http:HttpClient) { }
 
-  // getVideos() {
-  //   this.http.get<Video[]>('https://videos').subscribe((videos) => {
-  //     this.videosSignal.set(videos);
-  //   })
-  // }
+  getVideos() {
+    this.http.get<Video[]>('http://localhost:3000/videos').subscribe((videos) => {
+      this.videosSignal.set(videos);
+    })
+  }
+
 }

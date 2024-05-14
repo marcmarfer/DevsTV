@@ -3,6 +3,7 @@ import { VideoService } from '../../../services/video.service';
 import { DevelopmentCategory, Video } from '../../../interfaces/Video';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { get } from 'http';
 
 @Component({
   selector: 'app-videos',
@@ -22,38 +23,7 @@ export class VideosComponent {
     effect(() => {
       this.filteredVideos = this.videoService.filteredVideosSignal();
     });
-   };
-
-  testVideos: Video[] = [
-    {
-      youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
-      thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
-      reference: "REF01",
-      title: 'titulo 1',
-      category: DevelopmentCategory.GameDevelopment
-    },
-    {
-      youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
-      thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
-      reference: "REF02",
-      title: 'titulo 2',
-      category: DevelopmentCategory.DevOps
-    },
-    {
-      youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
-      thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
-      reference: "REF03",
-      title: 'titulo 3',
-      category: DevelopmentCategory.CloudComputing
-    },
-    {
-      youtubeURL: 'https://www.youtube.com/watch?v=J2X5mJ3HDYE',
-      thumbnail: 'https://i.ytimg.com/vi/J2X5mJ3HDYE/maxresdefault.jpg',
-      reference: "REF04",
-      title: 'titulo 4',
-      category: DevelopmentCategory.CloudComputing
-    }
-  ];
+  };
   
   get categories() {
     return Object.values(DevelopmentCategory);
@@ -74,15 +44,12 @@ export class VideosComponent {
   }
 
   ngOnInit(): void {
+    this.videoService.getVideos();
     this.videos = this.videoService.videosSignal();
     this.filteredVideos = this.videoService.filteredVideosSignal();
     this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
     
-    this.testVideos.forEach(testVideo => {
-      if (!this.videos.find(video => video.reference === testVideo.reference)) {
-        this.videos.push(testVideo);
-      }
-    });
+    console.log(this.videos);
 
     this.videoService.filteredVideosSignal.set(this.videos);
   }

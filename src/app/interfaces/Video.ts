@@ -1,6 +1,6 @@
 export interface Video {
-    youtubeURL: string;
-    thumbnail: string;
+    youtube_url: string;
+    thumbnail_url: string;
     reference: string;
     title: string;
     category: DevelopmentCategory;

@@ -7,6 +7,7 @@ CREATE TABLE users (
 
 CREATE TABLE videos (
     id_video INT AUTO_INCREMENT PRIMARY KEY,
+    reference VARCHAR(255),
     title VARCHAR(255),
     youtube_url VARCHAR(255),
     thumbnail_url VARCHAR(255),
@@ -27,9 +28,9 @@ INSERT INTO users (name, email, password) VALUES
 ('User1', 'user1@example.com', 'password1'),
 ('User2', 'user2@example.com', 'password2');
 
-INSERT INTO videos (title, youtube_url, thumbnail_url, category) VALUES
-('Video1', 'https://www.youtube.com/watch?v=u_OBuuR1f-Q&list=LL', 'https://cadenaser.com/resizer/Y2SyvGDiaElqtiN1-npSl7yH8ng=/1200x900/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/prisaradio/EULQ4EZPKRIE7OUVZHW3H2FYD4.jpg', 'Web Development'),
-('Video2', 'https://www.youtube.com/watch?v=u_OBuuR1f-Q&list=LL', 'https://cadenaser.com/resizer/Y2SyvGDiaElqtiN1-npSl7yH8ng=/1200x900/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/prisaradio/EULQ4EZPKRIE7OUVZHW3H2FYD4.jpg', 'Cloud Computing');
+INSERT INTO videos (title, reference, youtube_url, thumbnail_url, category) VALUES
+('Video1', 'REF01', 'https://www.youtube.com/watch?v=u_OBuuR1f-Q&list=LL', 'https://cadenaser.com/resizer/Y2SyvGDiaElqtiN1-npSl7yH8ng=/1200x900/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/prisaradio/EULQ4EZPKRIE7OUVZHW3H2FYD4.jpg', 'Web Development'),
+('Video2', 'REF02', 'https://www.youtube.com/watch?v=u_OBuuR1f-Q&list=LL', 'https://cadenaser.com/resizer/Y2SyvGDiaElqtiN1-npSl7yH8ng=/1200x900/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/prisaradio/EULQ4EZPKRIE7OUVZHW3H2FYD4.jpg', 'Cloud Computing');
 
 INSERT INTO bookmarked_videos (id_user, id_video, rating) VALUES
 (1, 1, 5),
