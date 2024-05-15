@@ -13,8 +13,7 @@
 
     <label for="category">Category:</label>
     <select id="category" formControlName="category" class="categories-select">
-        <option *ngFor="let category of categories; let first = first" [value]="category" [selected]="first">{{ category
-            }}</option>
+        <option *ngFor="let category of categories; let first = first" [value]="category" [selected]="first">{{ category }}</option>
     </select>
 
     <button type="submit" [disabled]="videoForm.invalid">Upload video</button>

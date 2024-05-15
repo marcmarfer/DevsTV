@@ -1,1 +1,35 @@
-<p>register works!</p>
+<div class="register-general-container">
+    <div class="register-container">
+        <div class="register-title">Devs<span class="tv">TV</span></div>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-container">
+            <div class="inputs-container">
+
+                <div class="input-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" formControlName="name">
+                </div>
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" formControlName="email">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" formControlName="password">
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm password:</label>
+                    <input type="password" id="confirmPassword" formControlName="confirmPassword">
+                </div>
+            </div>
+            <!-- @if (registerForm.get('password')?.hasError('passwordsNotMatch')) {
+            <div class="error-message">Passwords do not match</div>
+            } -->
+            <a routerLink="/login">
+                <p>Already have an acoount? Log in</p>
+            </a>
+            <div class="button-container">
+                <button type="submit" [disabled]="registerForm.invalid">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
