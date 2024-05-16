@@ -21,7 +21,6 @@ export class HeaderComponent {
    }
 
   searchVideos(event: Event): void {
-    console.log(this.filteredVideosByCategory)
     const searchTerm = (event.target as HTMLInputElement).value;
     this.filteredVideos = this.filteredVideosByCategory.filter(video =>
       video.title.toLowerCase().includes(searchTerm.toLowerCase())

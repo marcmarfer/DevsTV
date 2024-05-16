@@ -6,6 +6,7 @@ const bookmarkedVideoController = require('./controllers/bookmarkedVideoControll
 
 router.get('/users', usersController.getAllUsers);
 router.get('/users/:id', usersController.getUserById);
+router.post('/save-user', usersController.addUser);
 
 router.post('/save-video', videoController.saveVideo);
 router.get('/videos', videoController.getVideos);

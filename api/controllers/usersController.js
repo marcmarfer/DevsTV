@@ -14,7 +14,15 @@ const getAllUsers = (req, res, next) => {
   });
 };
 
+const addUser = (req, res, next) => {
+  connection.query('INSERT INTO users SET ?', req.body, (err, result) => {
+    if (err) return next(err);
+    res.json(result);
+  });
+}
+
 module.exports = {
   getAllUsers,
-  getUserById
+  getUserById,
+  addUser
 };
