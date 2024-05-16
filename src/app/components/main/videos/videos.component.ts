@@ -3,7 +3,6 @@ import { VideoService } from '../../../services/video.service';
 import { DevelopmentCategory, Video } from '../../../interfaces/Video';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { get } from 'http';
 
 @Component({
   selector: 'app-videos',
@@ -44,7 +43,6 @@ export class VideosComponent {
   }
 
   ngOnInit(): void {
-    this.videoService.getVideos();
     this.videos = this.videoService.videosSignal();
     this.filteredVideos = this.videoService.filteredVideosSignal();
     this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
