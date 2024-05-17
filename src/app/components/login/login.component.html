@@ -1,1 +1,39 @@
-<p>login works!</p>
+<div class="login-general-container">
+    <div class="login-container">
+        <div class="login-title">Devs<span class="tv">TV</span></div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-container">
+            <div class="inputs-container">
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" formControlName="email">
+                    @if(submitted && loginForm.get('email')?.errors?.['required']) {
+                        <span>{{validationMessages.email[0].message}}</span>
+                    }
+                    @else if (submitted && loginForm.get('email')?.errors?.['email']) {
+                        <span>{{validationMessages.email[1].message}}</span>
+                    }
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" formControlName="password">
+                    @if(submitted && loginForm.get('password')?.errors?.['required']) {
+                        <span>{{validationMessages.password[0].message}}</span>
+                    }
+                    @else if (submitted && loginForm.get('password')?.errors?.['minlength']) {
+                        <span>{{validationMessages.password[1].message}}</span>
+                    }
+                    @if(submitted && loginForm.errors?.['incorrectCredentials']) {
+                        <span>{{validationMessages.incorrectCredentials[0].message}}</span>
+                    }
+                </div>
+            </div>
+            <a routerLink="/register">
+                <p>Don't have an account? Click here to register</p>
+            </a>
+            <div class="button-container">
+                <!-- <button type="submit" [disabled]="loginForm.invalid">Log in</button> -->
+                <button type="submit">Log in</button>
+            </div>
+        </form>
+    </div>
+</div>

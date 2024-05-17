@@ -78,3 +78,21 @@ nav a {
 nav a:hover {
     color: #00CE6B;
 }
+
+button {
+    padding: 3px;
+    border: none;
+    border-radius: 10px;
+    background-color: #002922;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #B1FFC7;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 7rem;
+}
+
+button:hover {
+    background-color: #00473c;
+}

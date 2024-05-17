@@ -10,7 +10,7 @@ import { TokenService } from './token.service';
 export class UserService {
   usersSignal = signal<User[]>([]);
 
-  constructor(private http:HttpClient, private tokenService : TokenService) { }
+  constructor(private http:HttpClient, private tokenService : TokenService) { this.getUsers() }
 
   getUsers() {
     this.http.get<User[]>('http://localhost:3000/users').subscribe((users) => {
