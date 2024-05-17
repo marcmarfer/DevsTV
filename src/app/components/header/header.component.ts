@@ -2,6 +2,7 @@ import { Component, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { VideoService } from '../../services/video.service';
 import { Video } from '../../interfaces/Video';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent {
   filteredVideos: Video[] = [];
   filteredVideosByCategory: Video[] = [];
 
-  constructor(private videoService: VideoService) {
+  constructor(private videoService: VideoService, private tokenService: TokenService) {
     effect(() => {
       this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
     });
@@ -32,5 +33,9 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.filteredVideos = this.videoService.filteredVideosSignal();
     this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
+  }
+
+  removeToken(): void {
+    this.tokenService.removeToken();
   }
 }
