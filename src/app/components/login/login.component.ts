@@ -57,16 +57,17 @@ export class LoginComponent {
   isUserCorrect: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const email = control.get('email')?.value;
     const password = control.get('password')?.value;
-
+  
     const users = this.userService.usersSignal();
-
-    const user = users.find(user => user.email === email && user.password === password);
-
-    if (!user) {
-      return { 'incorrectCredentials': true };
+  
+    for (const user of users) {
+      if (user.email === email && user.password === password) {
+        this.userService.loginUser(user);
+        return null;
+      }
     }
-
-    return null;
+  
+    return { 'incorrectCredentials': true };
   }
   
 }

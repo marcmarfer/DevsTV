@@ -18,11 +18,17 @@ export class UserService {
     });
   }
 
+  loginUser(user: User) {
+    this.http.post('http://localhost:3000/login', user).subscribe((response:any) => {
+      this.tokenService.saveToken(response.token as string);
+    });
+  }
+
   postUser(user: User) {
     this.http.post('http://localhost:3000/save-user', user).subscribe((response:any) => {
       //sending response as string to save it on local storage
       this.tokenService.saveToken(response.token as string);
-      this.getUsers();
+      // this.getUsers();
     });
   }
 }
