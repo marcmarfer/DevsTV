@@ -10,7 +10,11 @@
     <a routerLink="/videos">Videos</a>
     <a routerLink="/bookmarks">Bookmarks</a>
     <a routerLink="/admin">Admin</a>
-    <button routerLink="/login">Log in</button>
-    <button (click)="removeToken()">Remove token (test)</button>
+    @if (!isLoggedIn()) {
+      <button routerLink="/login">Log in</button>
+    }
+    @else {
+      <button (click)="logOutUser()" routerLink="/login">Log out</button>
+    }
   </nav>
 </div>

@@ -35,7 +35,11 @@ export class HeaderComponent {
     this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
   }
 
-  removeToken(): void {
+  isLoggedIn(): boolean {
+    return this.tokenService.getToken() !== null;
+  }
+
+  logOutUser(): void {
     this.tokenService.removeToken();
   }
 }
