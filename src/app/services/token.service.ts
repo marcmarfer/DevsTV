@@ -1,21 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
-
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   saveToken(token: string): void {
-    localStorage.setItem('token', token);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('token', token);
+    }
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('token');
+    }
+    return null;
   }
 
   removeToken(): void {
-    localStorage.removeItem('token');
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('token');
+    }
   }
 }
