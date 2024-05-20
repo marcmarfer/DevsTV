@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule, AbstractContro
 import { RouterLink, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/User';
+import { VideoService } from '../../services/video.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent {
     ]
   };
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private videoService: VideoService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -62,7 +63,10 @@ export class LoginComponent {
   
     for (const user of users) {
       if (user.email === email && user.password === password) {
+        //log in user and get the user by id
         this.userService.loginUser(user);
+        this.userService.getUserById(user.id_user);
+        this.videoService.getBookmarkedVideosByUserId(user.id_user);
         return null;
       }
     }

@@ -9,8 +9,9 @@ import { TokenService } from './token.service';
 
 export class UserService {
   usersSignal = signal<User[]>([]);
+  userLoggedSignal = signal<User[]>([]);
 
-  constructor(private http:HttpClient, private tokenService : TokenService) { this.getUsers() }
+  constructor(private http: HttpClient, private tokenService: TokenService) { this.getUsers() }
 
   getUsers() {
     this.http.get<User[]>('http://localhost:3000/users').subscribe((users) => {
@@ -18,14 +19,24 @@ export class UserService {
     });
   }
 
+  getUserById(id: any) {
+    this.http.get<User[]>(`http://localhost:3000/users/${id}`).subscribe((user) => {
+      this.userLoggedSignal.set(user);
+    });
+  }
+
   loginUser(user: User) {
-    this.http.post('http://localhost:3000/login', user).subscribe((response:any) => {
+    this.http.post('http://localhost:3000/login', user).subscribe((response: any) => {
       this.tokenService.saveToken(response.token as string);
     });
   }
 
+  isLoggedIn(): boolean {
+    return this.tokenService.getToken() !== null;
+  }
+
   postUser(user: User) {
-    this.http.post('http://localhost:3000/save-user', user).subscribe((response:any) => {
+    this.http.post('http://localhost:3000/save-user', user).subscribe((response: any) => {
       //sending response as string to save it on local storage
       this.tokenService.saveToken(response.token as string);
       // this.getUsers();

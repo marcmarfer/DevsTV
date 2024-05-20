@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { VideoService } from '../../services/video.service';
 import { Video } from '../../interfaces/Video';
 import { TokenService } from '../../services/token.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent {
   filteredVideos: Video[] = [];
   filteredVideosByCategory: Video[] = [];
 
-  constructor(private videoService: VideoService, private tokenService: TokenService) {
+  constructor(private videoService: VideoService, private tokenService: TokenService, private userService: UserService) {
     effect(() => {
       this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
     });
@@ -36,7 +37,7 @@ export class HeaderComponent {
   }
 
   isLoggedIn(): boolean {
-    return this.tokenService.getToken() !== null;
+    return this.userService.isLoggedIn();
   }
 
   logOutUser(): void {

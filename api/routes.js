@@ -14,6 +14,7 @@ router.post('/save-video', authController.verifyToken, videoController.saveVideo
 router.get('/videos', videoController.getVideos);
 
 router.post('/save-bookmarked-video', authController.verifyToken, bookmarkedVideoController.saveBookmarkedVideo);
-router.get('/bookmarked-videos', authController.verifyToken, bookmarkedVideoController.getBookmarkedVideos);
+router.get('/bookmarked-videos', bookmarkedVideoController.getBookmarkedVideos);
+router.get('/bookmarked-videos/:userId', bookmarkedVideoController.getBookmarkedVideosByUserId);
 
 module.exports = router;

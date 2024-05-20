@@ -23,8 +23,21 @@ const getBookmarkedVideos = (req, res) => {
     });
 }
 
+const getBookmarkedVideosByUserId = (req, res) => {
+    const { userId } = req.params;
+    const sql = 'SELECT * FROM bookmarked_videos WHERE id_user = ?';
+    connection.query(sql, [userId], (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ message: 'Hubo un error al obtener los videos guardados' });
+        }
+        res.json(result);
+    });
+}
+
 module.exports = {
     saveBookmarkedVideo,
-    getBookmarkedVideos
+    getBookmarkedVideos,
+    getBookmarkedVideosByUserId
 };
 
