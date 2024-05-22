@@ -27,8 +27,11 @@ export class VideosComponent {
       }
     });
     effect(() => {
+      const userId = JSON.parse(localStorage.getItem('user') as string);
+      this.videoService.getBookmarkedVideosByUserId(userId);
       const newBookmarkedVideos = this.videoService.bookmarkedVideosSignal();
       if (this.bookmarkedVideos !== newBookmarkedVideos) {
+        console.log(this.bookmarkedVideos, newBookmarkedVideos)
         this.bookmarkedVideos = newBookmarkedVideos;
       }
     });
@@ -38,6 +41,8 @@ export class VideosComponent {
     this.videos = this.videoService.videosSignal();
     this.filteredVideos = this.videoService.filteredVideosSignal();
     this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
+    const userId = JSON.parse(localStorage.getItem('user') as string);
+    this.videoService.getBookmarkedVideosByUserId(userId);
     this.bookmarkedVideos = this.videoService.bookmarkedVideosSignal();
 
     this.videoService.filteredVideosSignal.set(this.videos);
