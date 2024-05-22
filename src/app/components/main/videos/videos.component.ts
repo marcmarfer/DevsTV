@@ -26,6 +26,22 @@ export class VideosComponent {
         this.filterVideosByCategory();
       }
     });
+    effect(() => {
+      const newBookmarkedVideos = this.videoService.bookmarkedVideosSignal();
+      if (this.bookmarkedVideos !== newBookmarkedVideos) {
+        this.bookmarkedVideos = newBookmarkedVideos;
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.videos = this.videoService.videosSignal();
+    this.filteredVideos = this.videoService.filteredVideosSignal();
+    this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
+    this.bookmarkedVideos = this.videoService.bookmarkedVideosSignal();
+
+    this.videoService.filteredVideosSignal.set(this.videos);
+    this.videoService.filteredVideosByCategorySignal.set(this.videos);
   }
 
   get categories() {
@@ -45,16 +61,6 @@ export class VideosComponent {
     if (this.filteredVideosByCategory !== this.videoService.filteredVideosByCategorySignal()) {
       this.videoService.filteredVideosByCategorySignal.update(() => this.filteredVideosByCategory);
     }
-  }
-
-  ngOnInit(): void {
-    this.videos = this.videoService.videosSignal();
-    this.filteredVideos = this.videoService.filteredVideosSignal();
-    this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
-    this.bookmarkedVideos = this.videoService.bookmarkedVideosSignal();
-
-    this.videoService.filteredVideosSignal.set(this.videos);
-    this.videoService.filteredVideosByCategorySignal.set(this.videos);
   }
 
   bookmarkVideo(video: Video) {
@@ -78,5 +84,4 @@ export class VideosComponent {
   isVideoBookmarked(video: any): boolean {
     return this.bookmarkedVideos.some(bookmarkedVideo => bookmarkedVideo.id_video === video.id_video);
   }
-
 }

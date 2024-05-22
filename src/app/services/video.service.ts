@@ -13,7 +13,7 @@ export class VideoService {
   filteredVideosByCategorySignal = signal<Video[]>([]);
   bookmarkedVideosSignal = signal<Video[]>([]);
 
-  constructor(private http:HttpClient, private tokenService : TokenService) { this.getVideos() }
+  constructor(private http:HttpClient, private tokenService : TokenService) { this.getVideos(), this.getBookmarkedVideos(); }
 
   getVideos() {
     this.http.get<Video[]>('http://localhost:3000/videos').subscribe((videos) => {
