@@ -88,4 +88,22 @@ export class VideoService {
       this.getBookmarkedVideos();
     });
   }
+
+  deleteBookmark(video: any) {
+    let headers = {};
+    const token = this.tokenService.getToken();
+
+    if (token) {
+      headers = { Authorization: `Bearer ${token}` };
+    } 
+    else {
+      alert("Need to be logged in to delete a bookmarked video!");
+      //no need to return in this case because post request already checks for token
+      //return;
+    }
+
+    this.http.post('http://localhost:3000/delete-bookmarked-video', video, { headers }).subscribe(() => {
+      this.getBookmarkedVideos();
+    });
+  }
 }

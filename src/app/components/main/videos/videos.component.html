@@ -25,7 +25,7 @@
         <p>Category: {{ video.category }}</p>
 
 
-        <!-- @if (isVideoBookmarked(video)) {
+        @if (!isVideoBookmarked(video)) {
         <a class="bookmark-buttons" (click)="bookmarkVideo(video)">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="4 0 24 24">
                 <path fill="currentColor"
@@ -34,12 +34,12 @@
         </a>
         }
         @else {
-        <a class="bookmark-buttons" (click)="deleteBookmarkedVideo(video)">
+        <a class="bookmark-buttons" (click)="deleteBookmark(video)">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="4 0 24 24">
                 <path fill="#cccccc" d="M5 21V5q0-.825.588-1.412T7 3h10q.825 0 1.413.588T19 5v16l-7-3z" />
             </svg>
         </a>
-        } -->
+        }
 
 
     </article>

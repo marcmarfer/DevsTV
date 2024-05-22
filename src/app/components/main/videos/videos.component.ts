@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './videos.component.html',
   styleUrl: './videos.component.css'
 })
-
 export class VideosComponent {
   videos: Video[] = [];
   filteredVideos: Video[] = [];
@@ -21,9 +20,13 @@ export class VideosComponent {
 
   constructor(private videoService: VideoService) {
     effect(() => {
-      this.filteredVideos = this.videoService.filteredVideosSignal();
+      const newFilteredVideos = this.videoService.filteredVideosSignal();
+      if (this.filteredVideos !== newFilteredVideos) {
+        this.filteredVideos = newFilteredVideos;
+        this.filterVideosByCategory();
+      }
     });
-  };
+  }
 
   get categories() {
     return Object.values(DevelopmentCategory);
@@ -35,12 +38,13 @@ export class VideosComponent {
 
   filterVideosByCategory() {
     if (this.selectedCategory === 'all') {
-      this.filteredVideosByCategory = this.videos;
+      this.filteredVideosByCategory = this.filteredVideos;
     } else {
-      this.filteredVideosByCategory = this.videos.filter(video => video.category === this.selectedCategory);
+      this.filteredVideosByCategory = this.filteredVideos.filter(video => video.category === this.selectedCategory);
     }
-    this.videoService.filteredVideosByCategorySignal.update(() => this.filteredVideosByCategory);
-    this.videoService.filteredVideosSignal.update(() => this.filteredVideosByCategory);
+    if (this.filteredVideosByCategory !== this.videoService.filteredVideosByCategorySignal()) {
+      this.videoService.filteredVideosByCategorySignal.update(() => this.filteredVideosByCategory);
+    }
   }
 
   ngOnInit(): void {
@@ -55,20 +59,24 @@ export class VideosComponent {
 
   bookmarkVideo(video: Video) {
     const id_user = parseInt(localStorage.getItem('user') ?? '', 10);
-
     const bookmarkData = {
       id_user: id_user,
       id_video: video.id_video
     };
-
     this.videoService.postBookmark(bookmarkData);
   }
 
-  // isVideoBookmarked(video: any): boolean {
-  //   const id_user = parseInt(localStorage.getItem('user') ?? '', 10);
+  deleteBookmark(video: Video) {
+    const id_user = parseInt(localStorage.getItem('user') ?? '', 10);
+    const bookmarkData = {
+      id_user: id_user,
+      id_video: video.id_video
+    };
+    this.videoService.deleteBookmark(bookmarkData);
+  }
 
-  //   this.videoService.getBookmarkedVideosByUserId(id_user);
+  isVideoBookmarked(video: any): boolean {
+    return this.bookmarkedVideos.some(bookmarkedVideo => bookmarkedVideo.id_video === video.id_video);
+  }
 
-  // return this.bookmarkedVideos.some(bookmarkedVideo => bookmarkedVideo.id_video === video.video_id);
-  // }
 }

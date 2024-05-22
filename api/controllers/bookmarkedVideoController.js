@@ -12,6 +12,18 @@ const saveBookmarkedVideo = (req, res) => {
     });
 };
 
+const deleteBookmarkedVideo = (req, res) => {
+    const { id_user, id_video } = req.body;
+    const sql = 'DELETE FROM bookmarked_videos WHERE id_user = ? AND id_video = ?';
+    connection.query(sql, [id_user, id_video], (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ message: 'Hubo un error al desmarcar el video como guardado' });
+        }
+        res.json({ message: 'Video desmarcado como guardado exitosamente' });
+    });
+}
+
 const getBookmarkedVideos = (req, res) => {
     const sql = 'SELECT * FROM bookmarked_videos';
     connection.query(sql, (err, result) => {
@@ -40,9 +52,11 @@ const getBookmarkedVideosByUserId = (req, res) => {
     });
 }
 
+
 module.exports = {
     saveBookmarkedVideo,
     getBookmarkedVideos,
-    getBookmarkedVideosByUserId
+    getBookmarkedVideosByUserId,
+    deleteBookmarkedVideo
 };
 
