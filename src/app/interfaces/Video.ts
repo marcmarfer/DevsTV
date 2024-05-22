@@ -1,4 +1,5 @@
 export interface Video {
+    id_video: number;
     youtube_url: string;
     thumbnail_url: string;
     reference: string;

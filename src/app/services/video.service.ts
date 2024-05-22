@@ -71,7 +71,7 @@ export class VideoService {
     });
   }
 
-  postBookmark(video: Video) {
+  postBookmark(video: any) {
     let headers = {};
     const token = this.tokenService.getToken();
 
@@ -84,7 +84,7 @@ export class VideoService {
       //return;
     }
 
-    this.http.post('http://localhost:3000/save-bookmark', video, { headers }).subscribe(() => {
+    this.http.post('http://localhost:3000/save-bookmarked-video', video, { headers }).subscribe(() => {
       this.getBookmarkedVideos();
     });
   }

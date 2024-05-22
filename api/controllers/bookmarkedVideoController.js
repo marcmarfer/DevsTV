@@ -1,9 +1,9 @@
 const connection = require('../db');
 
 const saveBookmarkedVideo = (req, res) => {
-    const { userId, videoId, rating } = req.body;
-    const sql = 'INSERT INTO bookmarked_videos (id_user, id_video, rating) VALUES (?, ?, ?)';
-    connection.query(sql, [userId, videoId, rating], (err, result) => {
+    const { id_user, id_video } = req.body;
+    const sql = 'INSERT INTO bookmarked_videos (id_user, id_video) VALUES (?, ?)';
+    connection.query(sql, [id_user, id_video], (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ message: 'Hubo un error al marcar el video como guardado' });

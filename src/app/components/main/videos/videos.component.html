@@ -3,7 +3,7 @@
     <select class="categories-select" [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange()">
         <option value="all">All</option>
         <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-    </select>    
+    </select>
 </div>
 <div class="general-videos-container">
     @if (filteredVideos.length > 0) {
@@ -23,6 +23,25 @@
         </div>
         <p>Reference: {{ video.reference }}</p>
         <p>Category: {{ video.category }}</p>
+
+
+        <!-- @if (isVideoBookmarked(video)) {
+        <a class="bookmark-buttons" (click)="bookmarkVideo(video)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="4 0 24 24">
+                <path fill="currentColor"
+                    d="M5 21V5q0-.825.588-1.412T7 3h10q.825 0 1.413.588T19 5v16l-7-3zm2-3.05l5-2.15l5 2.15V5H7zM7 5h10z" />
+            </svg>
+        </a>
+        }
+        @else {
+        <a class="bookmark-buttons" (click)="deleteBookmarkedVideo(video)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="4 0 24 24">
+                <path fill="#cccccc" d="M5 21V5q0-.825.588-1.412T7 3h10q.825 0 1.413.588T19 5v16l-7-3z" />
+            </svg>
+        </a>
+        } -->
+
+
     </article>
     }
     }

@@ -28,5 +28,4 @@ Content-Type: application/json
 {
     "userId": 2,
     "videoId": 3,
-    "rating": 5
 }

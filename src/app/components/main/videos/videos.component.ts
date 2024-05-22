@@ -17,13 +17,14 @@ export class VideosComponent {
   filteredVideos: Video[] = [];
   filteredVideosByCategory: Video[] = [];
   selectedCategory = 'all';
+  bookmarkedVideos: Video[] = [];
 
   constructor(private videoService: VideoService) {
     effect(() => {
       this.filteredVideos = this.videoService.filteredVideosSignal();
     });
   };
-  
+
   get categories() {
     return Object.values(DevelopmentCategory);
   }
@@ -46,8 +47,28 @@ export class VideosComponent {
     this.videos = this.videoService.videosSignal();
     this.filteredVideos = this.videoService.filteredVideosSignal();
     this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
+    this.bookmarkedVideos = this.videoService.bookmarkedVideosSignal();
 
     this.videoService.filteredVideosSignal.set(this.videos);
     this.videoService.filteredVideosByCategorySignal.set(this.videos);
   }
+
+  bookmarkVideo(video: Video) {
+    const id_user = parseInt(localStorage.getItem('user') ?? '', 10);
+
+    const bookmarkData = {
+      id_user: id_user,
+      id_video: video.id_video
+    };
+
+    this.videoService.postBookmark(bookmarkData);
+  }
+
+  // isVideoBookmarked(video: any): boolean {
+  //   const id_user = parseInt(localStorage.getItem('user') ?? '', 10);
+
+  //   this.videoService.getBookmarkedVideosByUserId(id_user);
+
+  // return this.bookmarkedVideos.some(bookmarkedVideo => bookmarkedVideo.id_video === video.video_id);
+  // }
 }

@@ -18,7 +18,6 @@ CREATE TABLE bookmarked_videos (
     id_user INT,
     id_video INT,
     saved_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    rating INT,
     PRIMARY KEY (id_user, id_video),
     FOREIGN KEY (id_user) REFERENCES users(id_user),
     FOREIGN KEY (id_video) REFERENCES videos(id_video)
@@ -38,7 +37,7 @@ INSERT INTO videos (title, reference, youtube_url, thumbnail_url, category) VALU
 ('Video7', 'REF07', 'https://www.youtube.com/watch?v=u_OBuuR1f-Q&list=LL', 'https://cadenaser.com/resizer/Y2SyvGDiaElqtiN1-npSl7yH8ng=/1200x900/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/prisaradio/EULQ4EZPKRIE7OUVZHW3H2FYD4.jpg', 'Game Development'),
 ('Video8', 'REF08', 'https://www.youtube.com/watch?v=u_OBuuR1f-Q&list=LL', 'https://cadenaser.com/resizer/Y2SyvGDiaElqtiN1-npSl7yH8ng=/1200x900/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/prisaradio/EULQ4EZPKRIE7OUVZHW3H2FYD4.jpg', 'Artificial Intelligence');
 
-INSERT INTO bookmarked_videos (id_user, id_video, rating) VALUES
-(1, 1, 5),
-(1, 2, 4),
-(2, 1, 3);
+INSERT INTO bookmarked_videos (id_user, id_video) VALUES
+(1, 1),
+(1, 2),
+(2, 1);
