@@ -20,7 +20,7 @@ export class HeaderComponent {
     effect(() => {
       this.filteredVideosByCategory = this.videoService.filteredVideosByCategorySignal();
     });
-   }
+  }
 
   searchVideos(event: Event): void {
     const searchTerm = (event.target as HTMLInputElement).value;
@@ -42,5 +42,6 @@ export class HeaderComponent {
 
   logOutUser(): void {
     this.tokenService.removeToken();
+    localStorage.removeItem('user');
   }
 }

@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { last } from 'rxjs';
+import { User } from '../../interfaces/User';
 
 @Component({
   selector: 'app-register',
@@ -32,6 +34,8 @@ export class RegisterComponent {
     ]
   };
 
+  lastUserId: User[] = [];
+
   constructor(private router : Router, private userService : UserService) { }
 
   ngOnInit(): void {
@@ -45,6 +49,8 @@ export class RegisterComponent {
         validators: this.matchPassword
       }
     );
+
+    this.lastUserId = this.userService.lastUserIdSignal();
   }
 
   onSubmit() {
@@ -53,6 +59,9 @@ export class RegisterComponent {
       // Delete field confirmPassword from newUser object
       const { confirmPassword, ...newUser } = this.registerForm.value;
       this.userService.postUser(newUser);
+
+      //set lastUserId to localStorage (+ 1 so it's the user now registered)
+      localStorage.setItem('user', JSON.stringify(this.lastUserId[0].id_user + 1));
       this.router.navigate(['/videos']);
       this.registerForm.reset();
     }

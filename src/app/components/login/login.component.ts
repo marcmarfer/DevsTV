@@ -63,10 +63,9 @@ export class LoginComponent {
   
     for (const user of users) {
       if (user.email === email && user.password === password) {
-        //log in user and get the user by id
+        //log in user and save its id to local storage
         this.userService.loginUser(user);
-        this.userService.getUserById(user.id_user);
-        this.videoService.getBookmarkedVideosByUserId(user.id_user);
+        localStorage.setItem('user', JSON.stringify(user.id_user));
         return null;
       }
     }

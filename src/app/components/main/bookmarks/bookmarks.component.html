@@ -3,7 +3,7 @@
     @if (isLoggedIn()) {
         <div class="bookmarks-container">
             @if (bookmarkedVideos.length > 0) {
-                <div class="bookmarks">
+                <div class="general-videos-container">
                     @for (video of bookmarkedVideos; track $index) {
                         <article>
                             <h3 class="video-titles">{{ video.title }}</h3>
@@ -24,11 +24,11 @@
                     }
                 </div>
             } @else {
-                <p>You don't have any bookmarks yet!</p>
+                <p class="no-videos-text">You don't have any bookmarks yet!</p>
             }
         </div>
     } 
     @else {
-        <p>You need to be logged in to see your bookmarks!</p>
+        <p class="no-videos-text">You need to be logged in to see your bookmarks!</p>
     }
 </div>

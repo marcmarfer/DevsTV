@@ -25,7 +25,12 @@ const getBookmarkedVideos = (req, res) => {
 
 const getBookmarkedVideosByUserId = (req, res) => {
     const { userId } = req.params;
-    const sql = 'SELECT * FROM bookmarked_videos WHERE id_user = ?';
+    const sql = `
+        SELECT v.*
+        FROM bookmarked_videos bv
+        JOIN videos v ON bv.id_video = v.id_video
+        WHERE bv.id_user = ?
+    `;
     connection.query(sql, [userId], (err, result) => {
         if (err) {
             console.log(err);

@@ -9,6 +9,7 @@ router.get('/users', usersController.getAllUsers);
 router.get('/users/:id', usersController.getUserById);
 router.post('/save-user', usersController.addUser);
 router.post('/login', usersController.loginUser);
+router.get('/last-user-id', usersController.getLastUserId);
 
 router.post('/save-video', authController.verifyToken, videoController.saveVideo);
 router.get('/videos', videoController.getVideos);

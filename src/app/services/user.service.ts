@@ -10,8 +10,9 @@ import { TokenService } from './token.service';
 export class UserService {
   usersSignal = signal<User[]>([]);
   userLoggedSignal = signal<User[]>([]);
+  lastUserIdSignal = signal<User[]>([]);
 
-  constructor(private http: HttpClient, private tokenService: TokenService) { this.getUsers() }
+  constructor(private http: HttpClient, private tokenService: TokenService) { this.getUsers(), this.getLastUserId() }
 
   getUsers() {
     this.http.get<User[]>('http://localhost:3000/users').subscribe((users) => {
@@ -22,6 +23,12 @@ export class UserService {
   getUserById(id: any) {
     this.http.get<User[]>(`http://localhost:3000/users/${id}`).subscribe((user) => {
       this.userLoggedSignal.set(user);
+    });
+  }
+
+  getLastUserId() {
+    this.http.get<User[]>('http://localhost:3000/last-user-id').subscribe((userId) => {
+      this.lastUserIdSignal.set(userId);
     });
   }
 

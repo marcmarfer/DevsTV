@@ -36,9 +36,17 @@ const addUser = (req, res, next) => {
   });
 }
 
+const getLastUserId = (req, res, next) => {
+  connection.query('SELECT MAX(id_user) AS id_user FROM users', (err, rows) => {
+    if (err) return next(err);
+    res.json(rows);
+  });
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   addUser,
-  loginUser
+  loginUser,
+  getLastUserId
 };
