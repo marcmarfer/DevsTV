@@ -66,6 +66,8 @@ export class LoginComponent {
         //log in user and save its id to local storage
         this.userService.loginUser(user);
         localStorage.setItem('user', JSON.stringify(user.id_user));
+        this.videoService.getBookmarkedVideosByUserId(user.id_user);
+        this.videoService.bookmarkedVideosSignal();
         return null;
       }
     }
